@@ -1,5 +1,5 @@
 import { useCart } from '../context/CartContext';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import OrderTotal from '../components/OrderTotal';
 
 export default function Summary() {
@@ -13,7 +13,7 @@ export default function Summary() {
 	const handleSubmit = () => {
 		window.localStorage.setItem('order', JSON.stringify(state));
 		dispatch({ type: 'CLEAR_CART' });
-		window.location.href = '/confirmation/confirmation.html';
+		window.location.href = '/Oleh_Paramei_Web_Wroclaw/confirmation/confirmation.html';
 	};
 
 	return (

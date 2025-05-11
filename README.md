@@ -41,6 +41,10 @@ The application uses the React Context API with the useReducer hook to manage th
 -   HTML & CSS for static confirmation page
 -   ESLint for code linting
 
+## Link to the deployed app:
+
+`https://olegparamey.github.io/Oleh_Paramei_Web_Wroclaw/`
+
 ## Setup:
 
 1. **Install dependencies:**
