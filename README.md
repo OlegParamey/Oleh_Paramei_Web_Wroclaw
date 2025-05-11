@@ -1,54 +1,68 @@
-# React + TypeScript + Vite
+# React Shopping Cart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple shopping cart application built with **React**, **TypeScript**, and **Vite**. It allows users to browse products, add them to a cart, and view a summary before and after placing an order.
 
-Currently, two official plugins are available:
+## Features:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   **Product List Page**: Displays a static list of products (name and price) loaded from a JSON file. Each product includes an "Add to Cart" button and a link to view the cart.
+-   **Shopping Cart Page**: Shows all items added to the cart, with the ability to increase, decrease, or remove quantities. Displays per-item subtotals and the overall cart total. Includes navigation to the order summary and product list.
+-   **Order Summary Page**: Presents a final summary of cart items before order placement, including all item details and total cost. Includes a "Place Order" button and a link to return to the cart for edits.
+-   **Order Confirmation Page**: After order submission, the user is redirected to a new, fully-loaded HTML page confirming the order. It displays all order details and provides a link to return to the product list (clearing the cart).
 
-## Expanding the ESLint configuration
+## State Management:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The application uses the React Context API with the useReducer hook to manage the shopping cart state globally across components.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Context Design:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+-   CartContext.tsx: Defines the context and custom hook (useCart) to access cart state and dispatch actions.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+-   CartProvider.tsx: Wraps the application and provides cart state to all child components.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+-   cartReducer: Handles cart actions like adding, removing, changing quantities, and clearing the cart.
+
+### Supported Actions:
+
+-   ADD_ITEM: Adds a product to the cart (max quantity of 10 per product).
+
+-   REMOVE_ITEM: Removes a product by ID.
+
+-   CHANGE_QUANTITY: Updates the quantity of a specific product.
+
+-   CLEAR_CART: Empties the entire cart (used after placing an order).
+
+## Technologies:
+
+-   React + TypeScript
+-   React Router for page navigation
+-   Context API for global cart state
+-   Vite for fast development and build
+-   Static data in JSON
+-   HTML & CSS for static confirmation page
+-   ESLint for code linting
+
+## Setup:
+
+1. **Install dependencies:**
+
+    ```bash
+    npm install
+    ```
+
+2. **Run the development server:**
+
+    ```bash
+    npm run dev
+    ```
+
+3. **Build for production:**
+
+    ```bash
+    npm run build
+    ```
+
+4. **Preview production build:**
+
+    ```bash
+    npm run preview
+    ```
